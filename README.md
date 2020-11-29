@@ -12,4 +12,4 @@ This will output the contents of <code>$var</code> to the browser and call <code
 
 The output will look like:
 
-![output](<output.png>)
+![output](<out.png>)

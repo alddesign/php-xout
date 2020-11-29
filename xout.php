@@ -1,11 +1,13 @@
+<?php
 /** 
- * A better implementation of PHP function var_dump();
+ * A more readable implementation of PHP function var_dump();
  * 
  * Provides syntax-highlighted insight even into nested objects,arrays, etc.
  * 
  * ```
  * //Example usage:
- * DataProcessor::xout(['cars' => ['audi','bmw'], 'nothing' => (object)['name' => 'Mario', 'age' => 34]]);  
+ * $var = ['cars' => ['audi','bmw'], 'nothing' => (object)['name' => 'Mario', 'age' => 34]];
+ * DataProcessor::xout($var);  
  * ```
  * 
  * @param mixed $value The variable to print out

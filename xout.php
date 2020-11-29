@@ -32,7 +32,8 @@ public static function xout($value, bool $dontDie = false)
 		$result = $initCall ? '<div id="xout-container" style="font-family: Courier New; font-weight: bold; font-size: 15px; color:'.$baseColor.';">' : '';
 
 		$isSimpleVar = false;
-		switch(gettype($value))
+		$valueType = gettype($value);
+		switch($valueType)
 		{
 			case 'array' : $result .= '<span>ARRAY</span><br />'.htmlspecialchars('['); break;
 			case 'object' : $result .= '<span>OBJECT</span> <span style="color:'.$objectClassColor.';">' . get_class($value) . '</span><br />'.htmlspecialchars('('); break;
@@ -43,13 +44,14 @@ public static function xout($value, bool $dontDie = false)
 
 		foreach ($value as $key => $val)
 		{
-			if (gettype($val) === 'array' || gettype($val) === 'object')
+			$valType = gettype($val);
+			if ($valType === 'array' || $valType === 'object')
 			{
-				if (gettype($val) === 'array')
+				if ($valueType === 'array')
 				{
 					$result .= '<li><span style="color:'.$arrayTypeColor.';">[' . htmlspecialchars($key) . ']</span><b style="color:'.$baseColor.';"> '.htmlspecialchars('=>').' </b><span>' . xout_($val, $dontDie, false) . '</span></li>';
 				}
-				if (gettype($val) === 'object')
+				if ($valueType === 'object')
 				{
 					$result .= '<li><span style="color:'.$objectTypeColor.';">' . htmlspecialchars($key) . '</span><b style="color:'.$baseColor.';"> '.htmlspecialchars('->').' </b><span>' . xout_($val, $dontDie, false) . '</span></li>';
 				}
@@ -57,7 +59,7 @@ public static function xout($value, bool $dontDie = false)
 			else
 			{
 				$color = 'black';
-				switch(gettype($val))
+				switch($valType)
 				{
 					case 'string' : $color = $stringTypeColor; $val = htmlspecialchars('\'').$val.htmlspecialchars('\''); break;
 					case 'integer' : $color = $integerTypeColor; break;
@@ -71,11 +73,11 @@ public static function xout($value, bool $dontDie = false)
 				$result .= '<li>';
 				if(!$isSimpleVar)
 				{
-					if(gettype($value) === 'array')
+					if($valueType === 'array')
 					{
 						$result .= '<span style="color:'.$arrayTypeColor.';">[' . htmlspecialchars($key) . ']</span><b style="color:'.$baseColor.';"> '.htmlspecialchars('=>').' </b>';
 					}
-					if(gettype($value) === 'object')
+					if($valueType === 'object')
 					{
 						$result .= '<span style="color:'.$objectTypeColor.';">' . htmlspecialchars($key) . '</span><b style="color:'.$baseColor.';"> '.htmlspecialchars('->').' </b>';
 					}
@@ -88,7 +90,7 @@ public static function xout($value, bool $dontDie = false)
 
 		if(!$isSimpleVar)
 		{
-			switch(gettype($value))
+			switch($valueType)
 			{
 				case 'array' : $result .= htmlspecialchars(']'); break;
 				case 'object' : $result .= htmlspecialchars(')'); break;

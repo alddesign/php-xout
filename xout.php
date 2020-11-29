@@ -7,7 +7,7 @@
  * ```
  * //Example usage:
  * $var = ['cars' => ['audi','bmw'], 'nothing' => (object)['name' => 'Mario', 'age' => 34]];
- * DataProcessor::xout($var);  
+ * xout($var);  
  * ```
  * 
  * @param mixed $value The variable to print out
